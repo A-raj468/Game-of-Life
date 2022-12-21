@@ -1,12 +1,14 @@
 /** @type {HTMLTableElement} */
 var table = document.getElementById('field');
 
-const HEIGHT = table.clientHeight;
-const WIDTH = table.clientWidth;
+var windowWidth = window.innerWidth;
 
-const N = 50;
-const tr_h = HEIGHT/N;
-const td_w = WIDTH/N;
+var HEIGHT = table.clientHeight;
+var WIDTH = table.clientWidth;
+
+var N = 50;
+var tr_h = HEIGHT/N * 100/windowWidth + 'vw';
+var td_w = WIDTH/N * 100/windowWidth + 'vw';
 
 var changable = true;
 
@@ -16,12 +18,12 @@ const alive = "#ccc";
 var cells = new Array(N);
 for (let i=0; i<N; i++){
     var tr = table.insertRow();
-    tr.style.height = tr_h + 'px';
+    tr.style.height = tr_h;
     cells[i] = new Array(N);
     for (let j=0; j<N; j++){
         var td = tr.insertCell();
         td.style.backgroundColor = dead;
-        td.style.width = td_w + 'px';
+        td.style.width = td_w;
         td.isAive = false;
         td.addEventListener('click', function(){
             if (changable){
@@ -89,4 +91,21 @@ update = function(){
         }
         draw();
     }
+}
+
+table.addEventListener("dragover", function(e){   
+    if(changable){
+        e.preventDefault();
+        if(e.target.tagName === "TD"){
+            if(!e.target.isAive){
+                e.target.isAive = true;
+                e.target.style.backgroundColor = e.target.isAive? alive: dead;
+            }
+        }
+    }
+})
+            
+function onClick(event) {                
+    if(event.target.tagName === "TD")
+        event.target.style.cursor = "pointer"
 }
