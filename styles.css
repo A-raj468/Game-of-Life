@@ -1,0 +1,22 @@
+.field{
+    position: relative;
+    width: 40vw;
+    height: 40vw;
+    border: 1px solid black;
+    padding: 0;
+    margin: auto;
+    display: block;
+    /* width: 800px;
+    height: 600px; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* border-spacing: 0.1vw; */
+    border-collapse: collapse;
+}
+
+td{
+    border: 1px solid black;
+}
