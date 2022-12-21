@@ -1,22 +1,133 @@
+body{
+    background-color: #000;
+}
+
+p{
+    color: #ccc;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 25vw 17vw 16vw 17vw 25vw;
+    grid-template-rows: 5vw 40vw;
+}
+
+.grid-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center{
+    width: 40vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .field{
     position: relative;
     width: 40vw;
     height: 40vw;
-    border: 1px solid black;
+    /* border: 1px solid black;
+    border-radius: 0.5%; */
     padding: 0;
     margin: auto;
     display: block;
     /* width: 800px;
     height: 600px; */
-    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    /* border-spacing: 0.1vw; */
-    border-collapse: collapse;
+    border-spacing: 0vw;
+    /* border-collapse: collapse; */
+    cursor: pointer;
 }
 
 td{
     border: 1px solid black;
+    padding: auto;
+    border-radius: 10%;
+}
+
+.button,
+.button:after {
+  width: 7vw;
+  height: 3vw;
+  line-height: 3vw;
+  font-size: 1vw;
+  font-family: 'Bebas Neue', sans-serif;
+  background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+  border: 0;
+  color: #fff;
+  letter-spacing: 0.5vw;
+  box-shadow: 0.1vw 0px 0px #00E6F6;
+  outline: transparent;
+  position: relative;
+  padding-bottom: 2vw;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:after {
+  --slice-0: inset(50% 50% 50% 50%);
+  --slice-1: inset(80% -0.1vw 0 0);
+  --slice-2: inset(50% -0.1vw 30% 0);
+  --slice-3: inset(10% -0.1vw 85% 0);
+  --slice-4: inset(40% -0.1vw 43% 0);
+  --slice-5: inset(80% -0.1vw 5% 0);
+  
+  content: 'The Game of Life';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);
+  text-shadow: -0.05vw -0.05vw 0px #F8F005, 0.05vw 0.05vw 0px #00E6F6;
+  clip-path: var(--slice-0);
+}
+
+.button:hover:after {
+  animation: 1s glitch;
+  animation-timing-function: steps(2, end);
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: var(--slice-1);
+    transform: translate(20px, -10px);
+  }
+  20% {
+    clip-path: var(--slice-3);
+    transform: translate(10px, -10px);
+  }
+  40% {
+    clip-path: var(--slice-1);
+    transform: translate(10px, -10px);
+  }
+  60% {
+    clip-path: var(--slice-3);
+    transform: translate(0px, -5px);
+  }
+  80% {
+    clip-path: var(--slice-2);
+    transform: translate(5px, 0px);
+  }
+  100% {
+    clip-path: var(--slice-3);
+    transform: translate(5px, 0px);
+  }
+}
+
+@media (min-width: 768px) {
+  .button,
+  .button:after {
+    width: 7vw;
+    height: 3vw;
+    line-height: 3vw;
+    padding: auto;
+  }
 }
