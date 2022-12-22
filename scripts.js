@@ -62,6 +62,8 @@ reset.addEventListener('click', function(){
         }
     }
     draw();
+    generation = 0;
+    numAlive = 0;
     play.innerText = 'Play';
     changable = true;
     console.log(reset.innerText);
@@ -78,17 +80,13 @@ skip.addEventListener('click', function(){
 window.addEventListener("keydown", function(event){
     if(event.code == "Space"){
         event.preventDefault();
-        if(changable && numAlive != 0){
-            changable = false;
-            play.innerText = 'Pause';
-        }
-        else{
-            changable = true;
-            play.innerText = 'Play';
-        }
+        play.click();
     }
     else if(event.key == "r"){
         reset.click();
+    }
+    else if(event.key == "s"){
+        skip.click();
     }
 })
 
@@ -126,6 +124,8 @@ draw = function(){
     }
 }
 
+var generation = 0;
+
 update = function(){
     if(!changable && numAlive != 0){
         let copy = new Array(N);
@@ -142,6 +142,7 @@ update = function(){
             }
         }
         draw();
+        generation++;
     }
     else if(numAlive == 0 && !changable){
         reset.click();
