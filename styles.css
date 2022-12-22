@@ -8,7 +8,7 @@ p{
 
 /* width */
 ::-webkit-scrollbar {
-    width: 1vw;
+    width: 0.5vw;
 }
 
 /* Track */
@@ -39,7 +39,7 @@ p{
 }
 
 #instructions{
-    padding-right: 1vw;
+    padding-right: 2vw;
 }
 
 .center{
