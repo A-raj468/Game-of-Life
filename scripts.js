@@ -1,6 +1,8 @@
-if(sessionStorage.getItem('Size') != null){
-    document.getElementById('size').value = sessionStorage.getItem('Size');
+if(sessionStorage.getItem('Size') == null){
+    sessionStorage.setItem('Size', document.getElementById('size').value);
 }
+
+document.getElementById('size').value = sessionStorage.getItem('Size');
 
 /** @type {HTMLTableElement} */
 var table = document.getElementById('field');
