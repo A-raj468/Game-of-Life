@@ -7,6 +7,10 @@ document.getElementById('size').value = sessionStorage.getItem('Size');
 /** @type {HTMLTableElement} */
 var table = document.getElementById('field');
 
+var gen = document.getElementById('generation');
+var live = document.getElementById('live');
+var dead = document.getElementById('dead');
+
 var windowWidth = window.innerWidth;
 
 var HEIGHT = table.clientHeight;
@@ -20,8 +24,11 @@ var td_w = WIDTH/N * 100/windowWidth + 'vw';
 
 var numAlive = 0;
 
+dead.innerText = N*N-numAlive;
+live.innerText = numAlive;
+
 const alive = "#F3EFE0";
-const dead = "#112616";
+const deadcell = "#112616";
 
 var cells = new Array(N);
 for (let i=0; i<N; i++){
@@ -30,16 +37,24 @@ for (let i=0; i<N; i++){
     cells[i] = new Array(N);
     for (let j=0; j<N; j++){
         var td = tr.insertCell();
-        td.style.backgroundColor = dead;
+        td.style.backgroundColor = deadcell;
         td.style.width = td_w;
         td.isAive = false;
         td.draggable = false;
         td.addEventListener('click', function(){
             if (changable){
-                if(this.isAive) numAlive--;
-                else numAlive++;
+                if(this.isAive){
+                    numAlive--;
+                    dead.innerText = N*N-numAlive;
+                    live.innerText = numAlive;
+                }
+                else{
+                    numAlive++;
+                    dead.innerText = N*N-numAlive;
+                    live.innerText = numAlive;
+                }
                 this.isAive = !this.isAive;
-                this.style.backgroundColor = this.isAive? alive: dead;
+                this.style.backgroundColor = this.isAive? alive: deadcell;
             }
         })
         cells[i][j] = td;
@@ -71,7 +86,10 @@ reset.addEventListener('click', function(){
     }
     draw();
     generation = 0;
+    gen.innerText = generation;
     numAlive = 0;
+    dead.innerText = N*N-numAlive;
+    live.innerText = numAlive;
     play.innerText = 'Play';
     changable = true;
     // console.log(reset.innerText);
@@ -113,12 +131,16 @@ check_state = function(x, y, copy, cells){
         if (!(count == 2 || count == 3)){
             cells[x][y].isAive = false;
             numAlive--;
+            dead.innerText = N*N-numAlive;
+            live.innerText = numAlive;
         }
     }
     else{
         if (count == 3){
             cells[x][y].isAive = true;
             numAlive++;
+            dead.innerText = N*N-numAlive;
+            live.innerText = numAlive;
         }
     }
     return count;
@@ -127,7 +149,7 @@ check_state = function(x, y, copy, cells){
 draw = function(){
     for(let i=0; i<N; i++){
         for(let j=0; j<N; j++){
-            cells[i][j].style.backgroundColor = cells[i][j].isAive? alive: dead;
+            cells[i][j].style.backgroundColor = cells[i][j].isAive? alive: deadcell;
         }
     }
 }
@@ -151,6 +173,8 @@ update = function(){
         }
         draw();
         generation++;
+        gen.innerText = generation;
+
     }
     else if(numAlive == 0 && !changable){
         reset.click();
@@ -164,7 +188,9 @@ table.addEventListener("dragover", function(e){
             if(!e.target.isAive){
                 e.target.isAive = true;
                 numAlive++;
-                e.target.style.backgroundColor = e.target.isAive? alive: dead;
+                dead.innerText = N*N-numAlive;
+                live.innerText = numAlive;
+                e.target.style.backgroundColor = e.target.isAive? alive: deadcell;
                 // e.target.style.cursor = 'pointer';
             }
         }
