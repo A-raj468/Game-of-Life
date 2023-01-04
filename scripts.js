@@ -1,5 +1,5 @@
-if(localStorage.getItem('Size') != null){
-    document.getElementById('size').value = localStorage.getItem('Size');
+if(sessionStorage.getItem('Size') != null){
+    document.getElementById('size').value = sessionStorage.getItem('Size');
 }
 
 /** @type {HTMLTableElement} */
@@ -174,5 +174,5 @@ interval = setInterval(update, 100);
 /**@type {HTMLButtonElement} */
 load = function(){
     N = document.getElementById('size').value;
-    localStorage.setItem('Size', N);
+    sessionStorage.setItem('Size', N);
 }
