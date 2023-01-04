@@ -25,7 +25,13 @@
 
 <body>
     <div class = "grid-container">
-        <div id="info" class="grid-item" style="grid-row: 1 / 3; grid-column: 1;"></div>
+        <div id="info" class="grid-item" style="grid-row: 1 / 3; grid-column: 1;">
+            <form action="" onsubmit="load();">
+                <label for="size">Size:</label>
+                <input type="number" name="size" id="size" min="1" max="100" value="50">
+                <input type="submit">
+            </form>
+        </div>
         <div id="button-play" class="grid-item" style="grid-row: 1; grid-column: 2;">
             <button id="play" class="button">Play</button>
         </div>
@@ -39,7 +45,7 @@
             <p style="font-size: 1vw;">
                 Greetings my friends!<br>
                 Welcome to <b>Game of Life</b><br><br>
-                This is a simulation of the famous cellular automaton, the <b>Game of Life</b>, devised by the British mathematician <b>John Horton Conway</b> in 1970.<br>
+                This is a simulation of the famous cellular automaton, the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Game of Life</a>, devised by the British mathematician <a href="https://en.wikipedia.org/wiki/John_Horton_Conway" target="_blank">John Horton Conway</a> in 1970.<br>
                 <br>
                 In this game the green cells represent dead cells, and white ones represent living cells. At the start you are given an empty board.
                 <br>
@@ -47,27 +53,23 @@
                 <br>
                 You can also kill a living cell by clicking on it.
                 <br>
-                In order to play this, you can set an initial configuration, and then hit play and the game begins.
-
+                In order to play this, you can set an initial configuration, also known as the seed, and then hit play and the game begins.
+                <br><br>
+                You can also use keyboard to control the game, use <b>Spacebar</b> to play/pause, <b>S</b> for skip, or <b>R</b> to reset.
             </p>
+            <ul style="font-size: 1vw;">
+                <h4 style="margin-left: -1em; margin-bottom: 1em;">Once started, the game is governed by the following rules.</h4>
+                <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
+                <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+                <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+                <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+            </ul>
+
         </div>
         <div id="game-field" class="grid-item" style="grid-row: 2; grid-column: 2 / 5">
             <table id="field" class="field"></table>
         </div>
     </div>
-    <!-- <table class="center">
-        <tr style="width: 100%;">
-            <td style="border: 0px; width: 30%;" align="center">
-                <button id="play" class="button">Play</button>
-            </td>
-            <td style="border: 0px; width: 40%;"></td>
-            <td style="border: 0px; width: 30%;" align="center">
-                <button id="reset" class="button">Reset</button>
-            </td>
-        </tr>
-    </table>
-
-    <table id="field" class="field"></table> -->
 
     <script src="scripts.js"></script>
 </body>

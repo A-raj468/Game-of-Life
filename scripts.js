@@ -1,3 +1,5 @@
+document.getElementById('size').value = localStorage.getItem('Size');
+
 /** @type {HTMLTableElement} */
 var table = document.getElementById('field');
 
@@ -6,11 +8,12 @@ var windowWidth = window.innerWidth;
 var HEIGHT = table.clientHeight;
 var WIDTH = table.clientWidth;
 
-var N = 50;
+var changable = true;
+var N = parseInt(document.getElementById('size').value);
+var interval = null;
 var tr_h = HEIGHT/N * 100/windowWidth + 'vw';
 var td_w = WIDTH/N * 100/windowWidth + 'vw';
 
-var changable = true;
 var numAlive = 0;
 
 const alive = "#F3EFE0";
@@ -45,12 +48,13 @@ play.addEventListener('click', function(){
     if(changable && numAlive != 0){
         changable = false;
         this.innerText = 'Pause';
+        // console.log('Play works');
     }
     else{
         changable = true;
         this.innerText = 'Play';
     }
-    console.log(this.innerText);
+    // console.log(this.innerText);
 })
 
 /** @type {HTMLButtonElement} */
@@ -66,7 +70,7 @@ reset.addEventListener('click', function(){
     numAlive = 0;
     play.innerText = 'Play';
     changable = true;
-    console.log(reset.innerText);
+    // console.log(reset.innerText);
 })
 
 /** @type {HTMLButtonElement} */
@@ -163,4 +167,10 @@ table.addEventListener("dragover", function(e){
     }
 })
 
-setInterval(update, 100);
+interval = setInterval(update, 100);
+
+/**@type {HTMLButtonElement} */
+load = function(){
+    N = document.getElementById('size').value;
+    localStorage.setItem('Size', N);
+}

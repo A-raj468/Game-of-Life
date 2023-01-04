@@ -1,9 +1,19 @@
 body{
     background-color: #000;
+    color: #ccc;
 }
 
-p{
-    color: #ccc;
+a{
+    color: #318D46;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    cursor: hand;
+}
+
+ul > li{
+    margin-bottom: 0.5em;
 }
 
 /* width */
@@ -26,9 +36,22 @@ p{
     background: #555; 
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0;
+}
+
 .grid-container{
     display: grid;
-    grid-template-columns: 25vw 17vw 16vw 17vw 25vw;
+    grid-template-columns: 28vw 15vw 14vw 15vw 28vw;
     grid-template-rows: 5vw 40vw;
 }
 
