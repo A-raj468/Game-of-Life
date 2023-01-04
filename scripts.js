@@ -1,4 +1,6 @@
-document.getElementById('size').value = localStorage.getItem('Size');
+if(localStorage.getItem('Size') != null){
+    document.getElementById('size').value = localStorage.getItem('Size');
+}
 
 /** @type {HTMLTableElement} */
 var table = document.getElementById('field');
